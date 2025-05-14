@@ -1,13 +1,170 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    /* filter: grayscale(50%) sepia(30%) brightness(90%) contrast(110%); */
+}
+h1{
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem;
+    height: auto;
+    /* background: green */
+}
+.box1{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+    /* width: 50%; */
+    padding: 20px;
+    height: 90%;
+    /* background: blue; */
+}
+ .img1{
+    position: relative;
+    justify-self: center;
+    width: 100%;
+    height: 300px;
+    grid-column: 1/5;
+    border-radius: 8px;
+    overflow: hidden;
+    background: gray;
+ }
+  .img1 .blurry{
+    position: absolute;
+    width: 100%;
+    height:100%;
+    backdrop-filter: blur(6px);
+  }
+.img1 .blurry img{
+    object-fit: contain;
+}
+.img1 img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.img2,.img3,.img4,.img5{
+    justify-self: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: tomato
+}
+.img2 img,.img3 img,.img4 img,.img5 img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.box2{
+    padding: 50px;
+    width: 50%;
+    height: 90%;
+    /* background: tomato; */
+}
+.box2 .company{
+    width: 100%;
+    font-weight: 600;
+    color: gray;
+    /* background: brown; */
+}
+.box2 .title{
+    padding: 10px 0 10px;
+    width: 100%;
+    font-size: 3rem;
+    line-height: 3rem;
+    font-weight: 700;
+    /* background: orange; */
+}
+.box2 .description{
+    padding: 10px 0 10px;
+    width: 100%;
+    /* background: yellow; */
+}
+.box2 .description{
+    padding: 10px 0 10px;
+    width: 100%;
+    /* background: green; */
+}
+.box2 .price{
+    padding: 10px 0 10px;
+    width: 100%;
+    /* background: blue; */
+}
+.box2 .price >span{
+    margin: 5px;
+}
+.box2 .amount{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0 10px;
+    width:70%;
+    /* background: purple; */
+}
+.myCart{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 8px;
+    font-size: bold;
+    color: white;
+    /* height: 100%; */
+    width: 170px;
+    border-radius: 8px;
+    background: lime;
+}
+.cart{
+    position: absolute;
+    top: 88%;
+    right: -3%;
+    display: none;
+    width: 300px;
+    /* height: 200px; */
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    background: white;
+}
+.myValue{
+    position: absolute;
+    top: -9px;
+    right: -12px;
+    color: red;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    font-weight: bold;
+    background: Orange;
+}
+.cart-imgs{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+  height: 150px;
+}
+.cart-info{
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
 }
