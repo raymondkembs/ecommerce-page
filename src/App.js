@@ -5,6 +5,8 @@ import Home from './Component/Home';
 import Product from './Component/Product';
 import { ProductProvider } from './Context/ProductContext';
 import { CartProvider } from './Context/CartContext';
+import Menshoes from './Component/men';
+import Collections from './Component/general';
 
 function App() {
   return (
@@ -16,7 +18,10 @@ function App() {
               <Routes>
                 <Route path="/page" element={<Page/>} />
                 <Route path="/product/:id" element={<Product/>} />
+                <Route path="/men" element={<Menshoes/>} />
+                <Route path="/collections" element={<Collections/>} />
                 <Route path="*" element={<Home/>} />
+                <Route path="/" element={<Collections/>} />
               </Routes>
             </Header>
             </ProductProvider>

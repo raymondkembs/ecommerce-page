@@ -100,19 +100,26 @@ h1{
     /* background: green; */
 }
 .box2 .price{
-    padding: 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 5px;
     width: 100%;
     /* background: blue; */
 }
-.box2 .price >span{
-    margin: 5px;
+.box2 .price1{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: yellow; */
 }
 .box2 .amount{
     display: flex;
     justify-content: flex-start;
     align-items: center;
     padding: 10px 0 10px;
-    width:70%;
+    /* width:70%; */
     /* background: purple; */
 }
 .myCart{
@@ -134,7 +141,7 @@ h1{
     display: none;
     width: 300px;
     /* height: 200px; */
-    border-radius: 5px;
+    border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0,0,0,0.05);
     background: white;
@@ -143,7 +150,7 @@ h1{
     position: absolute;
     top: -9px;
     right: -12px;
-    color: red;
+    color: black;
     padding: 10px;
     display: flex;
     justify-content: center;
@@ -151,7 +158,7 @@ h1{
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    font-weight: bold;
+    /* font-weight: bold; */
     background: Orange;
 }
 .cart-imgs{
@@ -167,4 +174,83 @@ h1{
   font-size: 16px;
   font-weight: 600;
   text-align: center;
+}
+
+.cartButton{
+    width: 50%;
+}
+.cartCount{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+}
+.cartCountInner{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .container{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+    .box1{
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 0.5rem;
+        padding: 0;
+        width: 100%;
+        /* background: brown; */
+    }
+    .img1{
+        height: 300px;
+        width: 100%;
+        border-radius: 0;
+    }
+    .img2,.img3,.img4,.img5{
+        display: none;
+    }
+    .cart{
+        position:static;
+        margin-top:94%;
+        align-self: center;
+
+    }
+    .cart-preview{
+        margin-top: 5%;
+    }
+    .box2{
+        width: 100%;
+        padding: 20px;
+        /* background: tomato; */
+    }
+    .amount{
+        flex-direction: column;
+        justify-content: center;
+        /* background: purple */
+    }
+    .cartButton{
+        width: 100%;
+        /* background: blue; */
+    }
+    .cartCount{
+        width: 100%;
+    }
+    .cartCountInner{
+        justify-content: space-around;
+    }
+    .box2 .price{
+        justify-content: space-between;
+        align-items: center;
+        flex-direction:row;
+        width: 98%;
+        /* background: green; */
+    }
+    .box2 .price1{
+        width: auto;
+    }
 }

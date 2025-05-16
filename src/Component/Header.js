@@ -7,10 +7,10 @@ import { CartContext } from "../Context/CartContext";
 import '../index.css'
 
 const navigation = [
-  { name: 'Collections', href: '/other1' },
-  { name: 'Men', href: '/other2' },
+  { name: 'Collections', href: '/collections' },
+  { name: 'Men', href: '/men' },
   { name: 'Women', href: '/page' },
-  { name: 'Contact', href: '/other4' },
+  // { name: 'Contact', href: '/other4' },
 ]
 
 function classNames(...classes) {
@@ -20,12 +20,23 @@ function classNames(...classes) {
 export default function Header(props) {
   const [opens, setOpens] = useState(false);
   const { product } = useContext(ProductContext);
-  const { selectedItems} = useContext(CartContext);
+  const { selectedItems, removeFromCart} = useContext(CartContext);
   // console.log(product);
   const myRef = useRef(null);
   const handlesCart = () =>{
     setOpens(!opens);
   }
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (myRef.current && !myRef.current.contains(event.target)) {
+        setOpens(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
   
   return (
     <>
@@ -71,11 +82,12 @@ export default function Header(props) {
             >
               <span className="absolute -inset-1.5" />
               <span className="sr-only">View notifications</span>
-              🛒<span className="myValue">{selectedItems.length}</span>
+              🛒{selectedItems.length > 0?<span className="myValue">{selectedItems.length}</span>: null}
               {/* <BellIcon aria-hidden="true" className="size-6" /> */}
             </button>
-            <div className="cart"
+            <div className="cart z-[100]"
               style={{display: opens ? 'block' : 'none'}}
+              ref={myRef}
             >
               {/* Optional dropdown */}
               <div className="cart-preview">
@@ -87,7 +99,13 @@ export default function Header(props) {
                         <span className="text-gray-800 font-semibold">{item.pname}</span>
                         <span className="text-gray-500">${item.nprice}</span>
                       </div>
-                      <button className="text-red-500 hover:text-red-700">Remove</button>
+                      <button className="flex items-center justify-between text-red-500 hover:text-white hover:bg-gray-700 pt-2 pr-3 pl-3 pb-2 bg-gray-200 rounded-full"
+                      onClick={() => removeFromCart(item.id)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                      </button>
                     </div>
                 )): 
                 (
@@ -100,27 +118,14 @@ export default function Header(props) {
             )
                 }
               </div>
-            </div>
-            {/* <div className='cart'
-              style={{display: opens ? 'block' : 'none'}}
-              ref={myRef}
-              onClick={handlesCart}
-              >
-                
-                {product? product.map((e) => {
-                  return (
-                    <div key={e.id} className="flex items-center justify-between bg-white border-b p-4">
-                      <img src={e.img} alt={e.pname} className="w-16 h-16 rounded-lg" />
-                      <div className="flex flex-col">
-                        <span className="text-gray-800 font-semibold">{e.pname}</span>
-                        <span className="text-gray-500">${e.nprice}</span>
-                      </div>
-                      <button className="text-red-500 hover:text-red-700">Remove</button>
-                    </div>
-                  )
-                }): <p>Nothing at the moment</p>}
-
-            </div> */}
+              {selectedItems.length > 0? 
+                  <div className="flex items-center justify-center bg-white border-b p-4">
+                      <button className="flex items-center justify-center text-red-500 hover:text-white hover:bg-orange-500 w-full p-2 bg-gray-200 rounded">
+                        Checkout
+                      </button>
+                  </div>
+                :null}
+               </div>
             {/* Profile dropdown */}
             <Menu as="div" className="relative ml-3">
               <div>
@@ -129,8 +134,8 @@ export default function Header(props) {
                   <span className="sr-only">Open user menu</span>
                   <img
                     alt=""
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                    className="size-8 rounded-full"
+                    src={`${process.env.PUBLIC_URL}/images/japanesethemetwo.jpg`}
+                    className="size-8 rounded-full object-cover"
                   />
                 </MenuButton>
               </div>
@@ -171,9 +176,8 @@ export default function Header(props) {
       <DisclosurePanel className="sm:hidden">
         <div className="space-y-1 px-2 pt-2 pb-3">
           {navigation.map((item) => (
-            <DisclosureButton
+            <NavLink
               key={item.name}
-              as="a"
               to={item.href}
               className={({isActive})=>{
                 return( 'block no-underline rounded-md px-3 py-2 text-sm font-medium' + 
@@ -182,7 +186,7 @@ export default function Header(props) {
             }}
             >
               {item.name}
-            </DisclosureButton>
+            </NavLink>
           ))}
         </div>
       </DisclosurePanel>
