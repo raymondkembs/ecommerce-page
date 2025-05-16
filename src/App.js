@@ -16,12 +16,12 @@ function App() {
           <ProductProvider>
             <Header>
               <Routes>
+                <Route path="/" element={<Collections/>} />
                 <Route path="/page" element={<Page/>} />
                 <Route path="/product/:id" element={<Product/>} />
                 <Route path="/men" element={<Menshoes/>} />
                 <Route path="/collections" element={<Collections/>} />
                 <Route path="*" element={<Home/>} />
-                <Route path="/" element={<Collections/>} />
               </Routes>
             </Header>
             </ProductProvider>
