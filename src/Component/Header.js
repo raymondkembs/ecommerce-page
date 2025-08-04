@@ -195,7 +195,7 @@ export default function Header(props) {
       <div className="bg-green-100">
           <div className="min-h-screen">
             {props.children}
-          <div>
+          </div>
       </div>
     </>
   )
